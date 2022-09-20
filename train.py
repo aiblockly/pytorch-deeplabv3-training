@@ -9,6 +9,17 @@ LOG_PATH = "log"
 EPOCH = 30
 INPUT_SHAPE = [512, 512]
 SHUFFLE = True
+#------------------------------------------------------------------#
+#   建议选项：
+#   种类少（几类）时，设置为True
+#   种类多（十几类）时，如果batch_size比较大（10以上），那么设置为True
+#   种类多（十几类）时，如果batch_size比较小（10以下），那么设置为False
+#------------------------------------------------------------------#
+dice_loss       = False
+#------------------------------------------------------------------#
+#   是否使用focal loss来防止正负样本不平衡
+#------------------------------------------------------------------#
+focal_loss      = False
 NUM_WOKERS = 8
 FP16 = True
 Init_lr = 7e-3
@@ -105,5 +116,5 @@ if __name__ == "__main__":
         epoch_step_val = num_val // BATCH_SIZE
         set_optimizer_lr(optimizer, lr_scheduler_func, epoch)
         fit_one_epoch(model_train, model, loss_his, eval_callback, optimizer, epoch,
-                    epoch_step, epoch_step_val, gen_train, gen_val, EPOCH, torch.cuda.is_available(), None, None, cls_weights, NUM_CLASSES, FP16, scaler, 5, SAVED_PATH, 0)
+                    epoch_step, epoch_step_val, gen_train, gen_val, EPOCH, torch.cuda.is_available(), dice_loss, focal_loss, cls_weights, NUM_CLASSES, FP16, scaler, 5, SAVED_PATH, 0)
     model_train.eval()
