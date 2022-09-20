@@ -10,7 +10,8 @@
 导出ONNX（Labview ONNX工具包推理使用的格式）请查看export.ipynb
 _______________
 TODO
-+ 增加Loss计算种类支持
++ 增加MSCOCO数据集支持
 + 增加推理代码
++ 增加Paddle Inference导出
 
 感谢 [bubbliiiing](https://github.com/bubbliiiing) | [msminhas93](https://github.com/msminhas93)
